@@ -14,19 +14,19 @@ Deno.serve(async (req) => {
     gender = Math.random() < 0.5 ? "male" : "female";
   }
 
-  let firstName: string;
+  let forename: string;
 
   if (gender === "male") {
-    firstName = randomChoice(male);
+    forename = randomChoice(male);
   } else if (gender === "female") {
-    firstName = randomChoice(female);
+    forename = randomChoice(female);
   } else {
-    firstName = randomChoice([...male, ...female]);
+    forename = randomChoice([...male, ...female]);
   }
 
   const surname = randomChoice(sur);
 
-  return new Response(JSON.stringify({ firstName, surname, gender }), {
+  return new Response(JSON.stringify({ forename, surname, gender }), {
     headers: { "Content-Type": "application/json" },
   });
 });
