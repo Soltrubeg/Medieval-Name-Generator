@@ -8,17 +8,15 @@ function randomChoice<T>(arr: T[]): T {
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);
-  let gender = url.searchParams.get("gender");
   const amountParam = url.searchParams.get("amount");
   const amount = amountParam ? Math.max(1, Math.min(100, parseInt(amountParam))) : 1;
 
-  if (gender != "male" && gender != "female") {
-    gender = Math.random() < 0.5 ? "male" : "female";
-  }
-
   const generateName = () => {
     let forename: string;
-
+    let gender = url.searchParams.get("gender");
+    if (gender != "male" && gender != "female") {
+      gender = Math.random() < 0.5 ? "male" : "female";
+    }
     if (gender === "male") {
       forename = randomChoice(male);
     } else if (gender === "female") {
