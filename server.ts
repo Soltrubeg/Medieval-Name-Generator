@@ -2,7 +2,6 @@ const male = JSON.parse(await Deno.readTextFile("male.json"));
 const female = JSON.parse(await Deno.readTextFile("female.json"));
 const sur = JSON.parse(await Deno.readTextFile("sur.json"));
 
-// Utility function to pick a random element
 function randomChoice<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
