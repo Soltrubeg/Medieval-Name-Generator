@@ -10,7 +10,7 @@ Deno.serve(async (req) => {
   const url = new URL(req.url);
   let gender = url.searchParams.get("gender");
 
-  if(!gender) {
+  if(gender != "male" && gender != "female") {
     gender = Math.random() < 0.5 ? "male" : "female";
   }
 
