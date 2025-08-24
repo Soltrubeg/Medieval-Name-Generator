@@ -9,13 +9,17 @@ function randomChoice<T>(arr: T[]): T {
 
 Deno.serve(async (req) => {
   const url = new URL(req.url);
-  const genderParam = url.searchParams.get("gender");
+  let gender = url.searchParams.get("gender");
+
+  if(!gender) {
+    gender = Math.random() < 0.5 ? "male" : "female";
+  }
 
   let firstName: string;
 
-  if (genderParam === "male") {
+  if (gender === "male") {
     firstName = randomChoice(male);
-  } else if (genderParam === "female") {
+  } else if (gender === "female") {
     firstName = randomChoice(female);
   } else {
     firstName = randomChoice([...male, ...female]);
@@ -23,7 +27,7 @@ Deno.serve(async (req) => {
 
   const surname = randomChoice(sur);
 
-  return new Response(JSON.stringify({ firstName, surname, genderParam }), {
+  return new Response(JSON.stringify({ firstName, surname, gender }), {
     headers: { "Content-Type": "application/json" },
   });
 });
