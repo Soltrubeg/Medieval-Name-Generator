@@ -22,9 +22,8 @@ Deno.serve(async (req) => {
   }
 
   const surname = randomChoice(sur);
-  const username = `${firstName} ${surname}`;
 
-  return new Response(JSON.stringify({ username }), {
+  return new Response(JSON.stringify({ firstName, surname, genderParam }), {
     headers: { "Content-Type": "application/json" },
   });
 });
